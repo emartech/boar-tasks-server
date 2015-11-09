@@ -12,7 +12,7 @@ Config.server = {
   watchPattern: 'server/**/*.js',
   environmentVariables: {
     NODE_ENV: process.env.NODE_ENV || 'development',
-    APP_ROOT_PATH: process.cwd() + '/' + Config.build.distPath,
+    APP_ROOT_PATH: process.cwd() + '/' + Config.build.distPath + '/processes/web/',
     IP: process.env.IP || undefined,
     PORT: process.env.PORT || 9100,
     BASE_URL: process.env.BASE_URL || 'http://localhost:9100'
@@ -22,7 +22,7 @@ Config.server = {
     flags: ['reporter dot', 'harmony', 'colors'],
     environmentVariables: {
       NODE_ENV: process.env.NODE_ENV || 'test',
-      APP_ROOT_PATH: process.cwd() + '/' + Config.build.distPath
+      APP_ROOT_PATH: process.cwd() + '/server/processes/web/'
     }
   },
   codeStylePattern: 'server/**/*.js'
