@@ -42,7 +42,7 @@ module.exports = function (gulp, config) {
 
       var _ = require('lodash');
 
-      var mochaPath = 'node_modules/boar-tasks/node_modules/mocha/bin/mocha';
+      var mochaPath = 'node_modules/boar-tasks-server/node_modules/mocha/bin/mocha';
       var env = _.extend({}, process.env, config.server.test.environmentVariables);
       var command = mochaPath+' '+flags+' '+requires+' "' + config.server.path + '**/*.spec.js"';
 
