@@ -7,8 +7,8 @@ Config.build = {
 
 Config.server = {
   path: 'server/',
-  runnable: Config.build.distPath + 'server.js',
-  filePattern: ['server/**/!(*.spec).{jade,js}', 'package.json'],
+  runnable: Config.build.distPath + 'processes/web/index.js',
+  filePattern: ['!server/**/*.factory.*', '!server/**/*.spec.*', 'server/**/*.{jade,js,css,json}',  'package.json', 'trace.config.js', 'Procfile'],
   watchPattern: 'server/**/*.js',
   environmentVariables: {
     NODE_ENV: process.env.NODE_ENV || 'development',

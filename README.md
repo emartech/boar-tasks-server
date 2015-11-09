@@ -10,23 +10,13 @@ Usually we create a `tasks.config.js` file which is for override the default tas
 ```javascript
 // tasks.config.js
 
-let _ = require('lodash');
-let environmentVariables = {
-  DEBUG: 'suite-sdk,suiterequest',
-  PORT: 9100,
-  BASE_URL: 'http://localhost:9100',
-  NODE_ENV: 'development'
-};
-
 module.exports = {
   server: {
-    filePattern: ['!server/**/*.factory.*', '!server/**/*.spec.*', 'server/**/*.{jade,js,css,json}',  'package.json', 'trace.config.js', 'Procfile'],
-    environmentVariables: environmentVariables,
-    runnable: 'dist/processes/web/index.js',
-    test: {
-      environmentVariables: _.extend({}, environmentVariables, {
-        NODE_ENV: 'test'
-      })
+    environmentVariables: {
+      DEBUG: 'suite-sdk,suiterequest',
+      PORT: 9100,
+      BASE_URL: 'http://localhost:9100',
+      NODE_ENV: 'development'
     }
   }
 };
