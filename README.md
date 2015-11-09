@@ -40,18 +40,14 @@ gulp.task('start', ['build'], function(cb) {
   runSequence(['server', 'server-watch'], cb);
 });
 
-gulp.task('test', ['server-test']);
+gulp.task('test', tasks.server.test);
 
-gulp.task('build-clean', function(cb) {
-  tasks.build.clean(cb);
-});
-
+gulp.task('build-clean', function(cb) { tasks.build.clean(cb); });
 gulp.task('server', tasks.server.start);
 gulp.task('server-copy', function() { return tasks.server.copy(false); });
 gulp.task('server-copy-only-changed', function () { return tasks.server.copy(true); });
 gulp.task('server-jshint', function() { return tasks.server.jshint(); });
 gulp.task('server-watch', function() { gulp.watch(tasks.config.server.filePattern, ['server-copy-only-changed']) });
-gulp.task('server-test', tasks.server.test);
 ```
 
 ## Available tasks
