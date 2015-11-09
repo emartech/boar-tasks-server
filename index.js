@@ -8,6 +8,7 @@ module.exports.getTasks = function(gulp, customConfig) {
 
   return {
     config: finalConfig,
-    server: require('./tasks/server')(gulp, finalConfig)
+    server: require('./tasks/server')(gulp, finalConfig),
+    build: require('./tasks/build')(gulp, finalConfig)
   };
 };
