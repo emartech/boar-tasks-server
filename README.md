@@ -121,7 +121,7 @@ gulp.task('server-copy-only-changed', function () { return tasks.server.copy(tru
 
 
 #### Test
-Run all the tests found in the codebase 
+Run all the tests found (all `*.spec.js` files) in the codebase.
 
 *Default configuration*
 
