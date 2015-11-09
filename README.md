@@ -1,1 +1,212 @@
-# boar-tasks-server
+# Boar Tasks for Server side
+This repository contains Gulp-based tasks to make server-side applications easier. It can be used with any server side framework.
+ 
+These tasks are helpers, you have to define your build tasks in your project's `gulpfile.js`. You can find examples in our existing services or workshop material. 
+
+Usually we create a `tasks.config.js` file which is for override the default task settings.
+  
+### Sample config file
+ 
+```javascript
+// tasks.config.js
+
+let _ = require('lodash');
+let environmentVariables = {
+  DEBUG: 'suite-sdk,suiterequest',
+  PORT: 9100,
+  BASE_URL: 'http://localhost:9100',
+  NODE_ENV: 'development'
+};
+
+module.exports = {
+  server: {
+    filePattern: ['!server/**/*.factory.*', '!server/**/*.spec.*', 'server/**/*.{jade,js,css,json}',  'package.json', 'trace.config.js', 'Procfile'],
+    environmentVariables: environmentVariables,
+    runnable: 'dist/processes/web/index.js',
+    test: {
+      environmentVariables: _.extend({}, environmentVariables, {
+        NODE_ENV: 'test'
+      })
+    }
+  }
+};
+```
+ 
+### Sample gulpfile
+
+```javascript
+// gulpfile.js
+
+let gulp = require('gulp');
+let runSequence = require('run-sequence');
+let config = require('./tasks.config');
+let tasks = require('boar-tasks-server').getTasks(gulp, config);
+
+gulp.task('build', ['build-clean'], function(cb) {
+  runSequence(['server-copy'], cb);
+});
+
+gulp.task('start', ['build'], function(cb) {
+  runSequence(['server', 'server-watch'], cb);
+});
+
+gulp.task('test', ['server-test']);
+
+gulp.task('build-clean', function(cb) {
+  tasks.build.clean(cb);
+});
+
+gulp.task('server', tasks.server.start);
+gulp.task('server-copy', function() { return tasks.server.copy(false); });
+gulp.task('server-copy-only-changed', function () { return tasks.server.copy(true); });
+gulp.task('server-jshint', function() { return tasks.server.jshint(); });
+gulp.task('server-watch', function() { gulp.watch(tasks.config.server.filePattern, ['server-copy-only-changed']) });
+gulp.task('server-test', tasks.server.test);
+```
+
+## Available tasks
+
+### Build tasks
+
+#### Clean
+It is used to remove files from the build target directory.
+
+
+
+### Server tasks
+
+#### Start
+Run a server in harmony mode with Nodemon for development purposes. It automatically restarts the server if any file in the `dist` folder is changed and notifies the developer about it. 
+
+*Default configuration*
+
+```javascript
+Config.build = {
+  distPath: 'dist/'
+};
+
+Config.server = {
+  path: 'server/',
+  runnable: Config.build.distPath + 'server.js',
+  filePattern: ['server/**/!(*.spec).{jade,js}', 'package.json'],
+  watchPattern: 'server/**/*.js',
+  environmentVariables: {
+    NODE_ENV: process.env.NODE_ENV || 'development',
+    APP_ROOT_PATH: process.cwd() + '/' + Config.build.distPath,
+    IP: process.env.IP || undefined,
+    PORT: process.env.PORT || 9100,
+    BASE_URL: process.env.BASE_URL || 'http://localhost:9100'
+  }
+};
+```
+
+*Usage*
+
+```javascript
+gulp.task('server', tasks.server.start);
+```
+
+
+
+#### Copy
+Copy files from the server source to the `dist` folder. 
+
+*Default configuration*
+
+```javascript
+Config.build = {
+  distPath: 'dist/'
+};
+
+Config.server = {
+  filePattern: ['server/**/!(*.spec).{jade,js}', 'package.json']
+};
+```
+
+*Usage*
+
+```javascript
+gulp.task('server-copy', function() { return tasks.server.copy(false); });
+
+// If you want to copy only the changed files
+gulp.task('server-copy-only-changed', function () { return tasks.server.copy(true); });
+```
+
+
+
+#### Test
+Run all the tests found in the codebase 
+
+*Default configuration*
+
+```javascript
+Config.server = {
+  path: 'server/',
+  test: {
+    requires: ['co-mocha'],
+    flags: ['reporter dot', 'harmony', 'colors'],
+    environmentVariables: {
+      NODE_ENV: process.env.NODE_ENV || 'test',
+      APP_ROOT_PATH: process.cwd() + '/' + Config.build.distPath
+    }
+  }  
+};
+```
+
+*Usage*
+
+```javascript
+gulp.task('server-copy', function() { return tasks.server.copy(false); });
+
+// If you want to copy only the changed files
+gulp.task('server-copy-only-changed', function () { return tasks.server.copy(true); });
+```
+
+
+
+#### Run command
+Run the specified command by spawning a child process. It sets the environment variables from the configuration also for the child process.
+
+*Default configuration*
+
+```javascript
+Config.server = {
+  environmentVariables: {
+    PORT: process.env.PORT || 9100,
+    BASE_URL: process.env.BASE_URL || 'http://localhost:9100'
+  }  
+};
+```
+
+*Usage*
+
+```javascript
+// Creating task for a job-runner 
+gulp.task('job-runner', function (cb) { return tasks.server.runCommand('server/processes/job-runner', cb) });
+```
+
+
+
+#### Code style
+Check code style using ESLint on the selected JavaScript files.  
+
+*Default configuration*
+
+```javascript
+Config.server = {
+  codeStylePattern: 'server/**/*.js'
+}
+```
+
+*Usage*
+
+```javascript
+gulp.task('server-codestyle', tasks.server.codeStyle);
+```
+
+
+
+
+
+
+
