@@ -1,12 +1,17 @@
-# Boar Tasks for Server side
+# Boar Tasks for server side
+
+[![npm version](https://badge.fury.io/js/boar-tasks-server.svg)](http://badge.fury.io/js/boar-tasks-server)
+[![Dependency Status](https://david-dm.org/emartech/boar-tasks-server.svg)](https://david-dm.org/emartech/boar-tasks-server)
+[![devDependency Status](https://david-dm.org/emartech/boar-tasks-server/dev-status.svg)](https://david-dm.org/emartech/boar-tasks-server#info=devDependencies)
+
 This repository contains Gulp-based tasks to make server-side applications easier. It can be used with any server side framework.
- 
-These tasks are helpers, you have to define your build tasks in your project's `gulpfile.js`. You can find examples in our existing services or workshop material. 
+
+These tasks are helpers, you have to define your build tasks in your project's `gulpfile.js`. You can find examples in our existing services or workshop material.
 
 Usually we create a `tasks.config.js` file which is for override the default task settings.
-  
+
 ### Sample config file
- 
+
 ```javascript
 // tasks.config.js
 
@@ -21,7 +26,7 @@ module.exports = {
   }
 };
 ```
- 
+
 ### Sample gulpfile
 
 ```javascript
@@ -62,7 +67,7 @@ It is used to remove files from the build target directory.
 ### Server tasks
 
 #### Start
-Run a server in harmony mode with Nodemon for development purposes. It automatically restarts the server if any file in the `dist` folder is changed and notifies the developer about it. 
+Run a server in harmony mode with Nodemon for development purposes. It automatically restarts the server if any file in the `dist` folder is changed and notifies the developer about it.
 
 *Default configuration*
 
@@ -95,7 +100,7 @@ gulp.task('server', tasks.server.start);
 
 
 #### Copy
-Copy files from the server source to the `dist` folder. 
+Copy files from the server source to the `dist` folder.
 
 *Default configuration*
 
@@ -135,7 +140,7 @@ Config.server = {
       NODE_ENV: process.env.NODE_ENV || 'test',
       APP_ROOT_PATH: process.cwd() + '/' + Config.build.distPath
     }
-  }  
+  }
 };
 ```
 
@@ -160,21 +165,21 @@ Config.server = {
   environmentVariables: {
     PORT: process.env.PORT || 9100,
     BASE_URL: process.env.BASE_URL || 'http://localhost:9100'
-  }  
+  }
 };
 ```
 
 *Usage*
 
 ```javascript
-// Creating task for a job-runner 
+// Creating task for a job-runner
 gulp.task('job-runner', function (cb) { return tasks.server.runCommand('server/processes/job-runner', cb) });
 ```
 
 
 
 #### Code style
-Check code style using ESLint on the selected JavaScript files.  
+Check code style using ESLint on the selected JavaScript files.
 
 *Default configuration*
 
