@@ -189,10 +189,3 @@ Config.server = {
 ```javascript
 gulp.task('server-codestyle', tasks.server.codeStyle);
 ```
-
-
-
-
-
-
-
