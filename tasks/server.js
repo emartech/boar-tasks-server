@@ -1,6 +1,10 @@
 'use strict';
 
+var boarTasksCommon = require('boar-tasks-common');
+
 module.exports = function (gulp, config) {
+  var lintTasks = boarTasksCommon.lint(gulp);
+
   return {
     start: function () {
       var nodemon = require('gulp-nodemon');
@@ -72,13 +76,11 @@ module.exports = function (gulp, config) {
     },
 
     codeStyle: function() {
-      var eslint = require('gulp-eslint');
+      return lintTasks.scripts(config.server.codeStylePattern);
+    },
 
-      return gulp.src(config.server.codeStylePattern)
-        .pipe(eslint({
-          useEslintrc: true
-        }))
-        .pipe(eslint.format());
+    jadeCodeStyle: function() {
+      return lintTasks.jade(config.server.jadeCodeStylePattern);
     }
   };
 };

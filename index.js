@@ -1,7 +1,9 @@
 'use strict';
 
 var extend = require('deep-extend');
-var config = require('./tasks/config');
+var boarTasksCommon = require('boar-tasks-common');
+var config = extend(boarTasksCommon.config, require('./tasks/config'));
+
 
 module.exports.getTasks = function(gulp, customConfig) {
   var finalConfig = extend(config, customConfig);
@@ -9,6 +11,6 @@ module.exports.getTasks = function(gulp, customConfig) {
   return {
     config: finalConfig,
     server: require('./tasks/server')(gulp, finalConfig),
-    build: require('./tasks/build')(gulp, finalConfig)
+    build: boarTasksCommon.build(gulp, finalConfig)
   };
 };

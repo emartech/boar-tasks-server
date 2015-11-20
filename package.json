@@ -1,6 +1,6 @@
 {
   "name": "boar-tasks-server",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Boar Tasks for server side",
   "main": "index.js",
   "scripts": {
@@ -18,12 +18,11 @@
     "url": "https://github.com/emartech/boar-tasks-server/issues"
   },
   "dependencies": {
+    "boar-tasks-common": "1.0.0",
     "co-mocha": "1.1.2",
-    "del": "1.2.0",
     "deep-extend": "0.4.0",
-    "gulp-if": "1.2.5",
     "gulp-changed": "1.3.0",
-    "gulp-eslint": "^1.0.0",
+    "gulp-if": "1.2.5",
     "gulp-nodemon": "2.0.3",
     "lodash": "3.10.1",
     "mocha": "2.2.5",

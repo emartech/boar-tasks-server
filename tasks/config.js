@@ -25,7 +25,8 @@ Config.server = {
       APP_ROOT_PATH: process.cwd() + '/server/processes/web/'
     }
   },
-  codeStylePattern: 'server/**/*.js'
+  codeStylePattern: 'server/**/*.js',
+  jadeCodeStylePattern: 'server/**/*.jade'
 };
 
 module.exports = Config;
