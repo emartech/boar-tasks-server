@@ -46,7 +46,7 @@ module.exports = function (gulp, config) {
 
       var _ = require('lodash');
 
-      var mochaPath = '$(npm bin)/mocha';
+      var mochaPath = require('path').dirname(require.resolve('mocha')) + '/bin/mocha';
       var env = _.extend({}, process.env, config.server.test.environmentVariables);
       var command = mochaPath+' '+flags+' '+requires+' "' + config.server.path + '**/*.spec.js"';
 
