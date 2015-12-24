@@ -79,8 +79,8 @@ module.exports = function (gulp, config) {
       return lintTasks.scripts(config.server.codeStylePattern);
     },
 
-    jadeCodeStyle: function() {
-      return lintTasks.jade(config.server.jadeCodeStylePattern);
+    templateCodeStyle: function() {
+      return lintTasks.templates(config.server.templateCodeStylePattern);
     }
   };
 };

@@ -26,7 +26,7 @@ Config.server = {
     }
   },
   codeStylePattern: 'server/**/*.js',
-  jadeCodeStylePattern: 'server/**/*.jade'
+  templateCodeStylePattern: 'server/**/*.jade'
 };
 
 module.exports = Config;
