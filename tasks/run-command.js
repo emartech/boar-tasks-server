@@ -6,12 +6,10 @@ module.exports = function(gulp, config) {
     var spawn = require('child_process').spawn;
     var env = _.extend({}, process.env, config.server.environmentVariables);
     var proc = spawn('node', [command], { env: env });
-    proc.stdout.on('data', function (data) {
-      console.log(data.toString());
-    });
-    proc.stderr.on('data', function (data) {
-      console.log(data.toString());
-    });
+    proc.stdout.pipe(process.stdout);
+    proc.stdin.pipe(process.stdin);
+    proc.stderr.pipe(process.stderr);
+
     proc.on('close', function (code) {
       console.log('child process exited with code ' + code);
     });
