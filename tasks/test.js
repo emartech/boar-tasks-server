@@ -6,7 +6,7 @@ module.exports = function(gulp, config) {
       return requires.concat(['--require', dependency]);
     }, []);
     var flags = config.server.test.flags.reduce(function(flags, flag) {
-      let sliced = flag.split(' ');
+      var sliced = flag.split(' ');
       sliced[0] = '--' +sliced[0];
       return flags.concat(sliced);
     }, []);
@@ -24,8 +24,11 @@ module.exports = function(gulp, config) {
     proc.stderr.pipe(process.stderr);
 
     proc.on('close', function (code) {
-      console.log('child process exited with code ' + code);
-      cb();
+      if (code === 0) {
+        cb();
+      } else {
+        cb(new Error(code));
+      }
     });
   };
 };
