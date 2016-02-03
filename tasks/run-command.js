@@ -11,7 +11,11 @@ module.exports = function(gulp, config) {
     proc.stderr.pipe(process.stderr);
 
     proc.on('close', function (code) {
-      console.log('child process exited with code ' + code);
+      if (code === 0) {
+        cb();
+      } else {
+        cb(new Error(code));
+      }
     });
   };
 };
