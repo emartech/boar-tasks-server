@@ -39,5 +39,6 @@
     "validate-commit-message": "3.0.1",
     "semantic-release": "4.3.5"
   },
-  "homepage": "https://github.com/emartech/boar-tasks-server"
+  "homepage": "https://github.com/emartech/boar-tasks-server",
+  "version": "3.1.1"
 }
