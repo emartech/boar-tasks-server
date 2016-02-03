@@ -2,25 +2,33 @@
 
 module.exports = function(gulp, config) {
   return function(cb) {
-    var requires = config.server.test.requires.map(function(dependency) {
-      return '--require ' + dependency;
-    }).join(' ');
-    var flags = config.server.test.flags.map(function(flag) {
-      return '--' + flag;
-    }).join(' ');
+    var requires = config.server.test.requires.reduce(function(requires, dependency) {
+      return requires.concat(['--require', dependency]);
+    }, []);
+    var flags = config.server.test.flags.reduce(function(flags, flag) {
+      var sliced = flag.split(' ');
+      sliced[0] = '--' +sliced[0];
+      return flags.concat(sliced);
+    }, []);
 
     var _ = require('lodash');
 
     var mochaPath = require('path').dirname(require.resolve('mocha')) + '/bin/mocha';
+    var command = [mochaPath].concat(flags).concat(requires).concat([config.server.path + '**/*.spec.js']);
+    var spawn = require('child_process').spawn;
     var env = _.extend({}, process.env, config.server.test.environmentVariables);
-    var command = mochaPath+' '+flags+' '+requires+' "' + config.server.path + '**/*.spec.js"';
+    var proc = spawn('node', command, { env: env });
 
-    var exec = require('child_process').exec;
+    proc.stdout.pipe(process.stdout);
+    proc.stdin.pipe(process.stdin);
+    proc.stderr.pipe(process.stderr);
 
-    exec(command, { env: env }, function (err, stdout, stderr) {
-      console.log(stdout);
-      console.log(stderr);
-      cb(err);
+    proc.on('close', function (code) {
+      if (code === 0) {
+        cb();
+      } else {
+        cb(new Error(code));
+      }
     });
   };
 };
