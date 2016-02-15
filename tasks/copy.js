@@ -5,7 +5,7 @@ module.exports = function(gulp, config) {
     var gulpif = require('gulp-if');
     var changed = require('gulp-changed');
 
-    return gulp.src(config.server.filePattern)
+    return gulp.src(config.server.filePattern, config.server.copySrcOptions)
       .pipe(gulpif(onlyChanged, changed(config.build.distPath)))
       .pipe(gulp.dest(config.build.distPath));
   };

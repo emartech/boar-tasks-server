@@ -110,7 +110,8 @@ Config.build = {
 };
 
 Config.server = {
-  filePattern: ['server/**/!(*.spec).{jade,js}', 'package.json']
+  filePattern: ['server/**/!(*.spec).{jade,js}', 'package.json'],
+  copySrcOptions: {}
 };
 ```
 
