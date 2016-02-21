@@ -8,7 +8,7 @@ const argv = require('yargs')
     .demand(['t'])
     .argv;
 
-const id = `Boar task '${argv.t})`;
+const id = `Boar task '${argv.t}`;
 co(function* () {
   console.time(id);
   const config = require(`${process.cwd()}/${argv.c}`);
