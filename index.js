@@ -9,7 +9,7 @@ module.exports.getTasks = function(customConfig) {
 
   return {
     config: finalConfig,
-    build: boarTasksCommon.build(require('gulp'), finalConfig),
+    build: boarTasksCommon.build(finalConfig),
     server: {
       start: require('./tasks/start')(finalConfig),
       copy: require('./tasks/copy')(finalConfig),
