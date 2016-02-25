@@ -25,6 +25,7 @@
     "validate-commit-msg"
   ],
   "dependencies": {
+    "async-runner": "4.0.0",
     "boar-tasks-common": "3.1.0",
     "co": "4.6.0",
     "co-mocha": "1.1.2",
@@ -39,8 +40,8 @@
   },
   "devDependencies": {
     "pre-commit": "1.1.2",
-    "validate-commit-message": "3.0.1",
-    "semantic-release": "4.3.5"
+    "semantic-release": "4.3.5",
+    "validate-commit-message": "3.0.1"
   },
   "homepage": "https://github.com/emartech/boar-tasks-server"
 }
