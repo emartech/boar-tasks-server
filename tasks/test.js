@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function(gulp, config) {
+module.exports = function(config) {
   return function() {
     return new Promise(function(resolve, reject) {
       var requires = config.server.test.requires.reduce(function(requires, dependency) {

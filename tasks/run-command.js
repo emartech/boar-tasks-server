@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function(gulp, config) {
+module.exports = function(config) {
   return function(command) {
     return new Promise(function(resolve, reject) {
       var _ = require('lodash');

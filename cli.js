@@ -18,7 +18,7 @@ co(function* () {
   console.log(`${id} started`);
   console.time(id);
   const config = require(`${process.cwd()}/${argv.c}`);
-  const boarTasks = boarTasksServer.getTasks(null, config);
+  const boarTasks = boarTasksServer.getTasks(config);
   const tasks = taskIds.map((taskId) => () => boarTasks.server[taskId]());
   const runner = argv.parallel ? parallel : sequence;
   yield runner(tasks);
