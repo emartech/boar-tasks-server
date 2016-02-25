@@ -18,7 +18,7 @@ module.exports = function(gulp, config) {
           resolve();
         } else {
           var err = new Error(code);
-          if (cb) cb(cb);
+          if (cb) cb(err);
           reject(err);
         }
       });
