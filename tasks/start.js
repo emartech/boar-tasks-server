@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function(gulp, config) {
-  return function(cb) {
+  return function() {
     return new Promise(function(resolve) {
       var nodemon = require('nodemon');
       var notifier = require('node-notifier');
@@ -21,7 +21,6 @@ module.exports = function(gulp, config) {
           message: 'Server exited',
           icon: icon
         });
-        if (cb) cb();
         resolve();
       }).on('restart', function() {
         notifier.notify({

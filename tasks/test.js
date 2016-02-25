@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function(gulp, config) {
-  return function(cb) {
+  return function() {
     return new Promise(function(resolve, reject) {
       var requires = config.server.test.requires.reduce(function(requires, dependency) {
         return requires.concat(['--require', dependency]);
@@ -26,12 +26,9 @@ module.exports = function(gulp, config) {
 
       proc.on('close', function (code) {
         if (code === 0) {
-          if (cb) cb();
           resolve();
         } else {
-          var err = new Error(code);
-          if (cb) cb(err);
-          reject(err);
+          reject(new Error(code));
         }
       });
     });

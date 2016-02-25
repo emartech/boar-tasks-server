@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function(gulp, config) {
-  return function(command, cb) {
+  return function(command) {
     return new Promise(function(resolve, reject) {
       var _ = require('lodash');
       var spawn = require('child_process').spawn;
@@ -14,12 +14,9 @@ module.exports = function(gulp, config) {
 
       proc.on('close', function (code) {
         if (code === 0) {
-          if (cb) cb();
           resolve();
         } else {
-          var err = new Error(code);
-          if (cb) cb(err);
-          reject(err);
+          reject(new Error(code));
         }
       });
     });
