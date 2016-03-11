@@ -67,7 +67,7 @@ It is used to remove files from the build target directory.
 ### Server tasks
 
 #### Start
-Run a server in harmony mode with Nodemon for development purposes. It automatically restarts the server if any file in the `dist` folder is changed and notifies the developer about it.
+Run a server with Nodemon for development purposes. It automatically restarts the server if any file in the `dist` folder is changed and notifies the developer about it.
 
 *Default configuration*
 
@@ -135,7 +135,7 @@ Config.server = {
   path: 'server/',
   test: {
     requires: ['co-mocha'],
-    flags: ['reporter dot', 'harmony', 'colors'],
+    flags: ['reporter dot', 'colors'],
     environmentVariables: {
       NODE_ENV: process.env.NODE_ENV || 'test',
       APP_ROOT_PATH: process.cwd() + '/' + Config.build.distPath
