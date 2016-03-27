@@ -17,11 +17,7 @@ module.exports = function(gulp, config) {
     var command = [mochaPath].concat(flags).concat(requires).concat([config.server.path + '**/*.spec.js']);
     var spawn = require('child_process').spawn;
     var env = _.extend({}, process.env, config.server.test.environmentVariables);
-    var proc = spawn('node', command, { env: env });
-
-    proc.stdout.pipe(process.stdout);
-    proc.stdin.pipe(process.stdin);
-    proc.stderr.pipe(process.stderr);
+    var proc = spawn('node', command, { env: env, stdio: 'inherit' });
 
     proc.on('close', function (code) {
       if (code === 0) {
