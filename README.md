@@ -229,7 +229,7 @@ gulp.task('server-template-code-style', tasks.server.templateCodeStyle);
 
 
 #### Security checks
-Check package.json dependencies section against known vulnerable libraries. This will only generate warnings on the console.
+Check package.json's dependencies section against known vulnerable libraries. This will only generate warnings on the console.
 
 *Usage*
 
