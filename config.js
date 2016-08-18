@@ -11,11 +11,11 @@ Config.server = {
   filePattern: ['!server/**/*.factory.*', '!server/**/*.spec.*', 'server/**/*.{jade,js,css,json}',  'package.json', 'trace.config.js', 'Procfile'],
   watchPattern: 'server/**/*.js',
   environmentVariables: {
-    NODE_ENV: process.env.NODE_ENV || 'development',
+    NODE_ENV: 'development',
     APP_ROOT_PATH: process.cwd() + '/' + Config.build.distPath + '/processes/web/',
-    IP: process.env.IP || undefined,
-    PORT: process.env.PORT || 9100,
-    BASE_URL: process.env.BASE_URL || 'http://localhost:9100'
+    IP: undefined,
+    PORT: 9100,
+    BASE_URL: 'http://localhost:9100'
   },
   test: {
     requires: ['co-mocha'],
