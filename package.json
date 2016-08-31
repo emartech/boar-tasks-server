@@ -25,14 +25,14 @@
   ],
   "dependencies": {
     "boar-tasks-common": "5.0.0",
-    "co-mocha": "1.1.2",
+    "co-mocha": "1.1.3",
     "deep-extend": "0.4.1",
-    "gulp-changed": "1.3.0",
+    "gulp-changed": "1.3.2",
     "gulp-if": "2.0.1",
     "gulp-nodemon": "2.1.0",
-    "lodash": "4.13.1",
-    "mocha": "2.5.3",
-    "node-notifier": "4.6.0"
+    "lodash": "4.15.0",
+    "mocha": "3.0.2",
+    "node-notifier": "4.6.1"
   },
   "devDependencies": {
     "pre-commit": "1.1.3",
