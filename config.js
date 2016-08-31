@@ -9,6 +9,7 @@ Config.server = {
   path: 'server/',
   runnable: Config.build.distPath + 'processes/web/index.js',
   filePattern: ['!server/**/*.factory.*', '!server/**/*.spec.*', 'server/**/*.{jade,js,css,json}',  'package.json', 'trace.config.js', 'Procfile'],
+  copySrcOptions: {},
   watchPattern: 'server/**/*.js',
   environmentVariables: {
     NODE_ENV: 'development',
