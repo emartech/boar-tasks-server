@@ -13,8 +13,7 @@ module.exports = function(gulp, config) {
       ext: 'js jade',
       watch: [config.build.distPath],
       delay: 1,
-      env: env,
-      nodeArgs: ['--harmony']
+      env: env
     }).on('restart', function() {
       notifier.notify({
         title: 'Boar tasks',
