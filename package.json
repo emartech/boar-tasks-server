@@ -8,7 +8,7 @@
   },
   "release": {
     "verifyConditions": {
-      "path": "./node_modules/semantic-release/dist/lib/plugin-noop.js"
+      "path": "./node_modules/semantic-release/src/lib/plugin-noop.js"
     }
   },
   "repository": {
@@ -24,19 +24,19 @@
     "validate-commit-msg"
   ],
   "dependencies": {
-    "boar-tasks-common": "5.0.0",
+    "boar-tasks-common": "6.0.0",
     "co-mocha": "1.2.0",
     "deep-extend": "0.4.1",
-    "gulp-changed": "1.3.2",
-    "gulp-if": "2.0.1",
-    "gulp-nodemon": "2.1.0",
-    "lodash": "4.15.0",
+    "gulp-changed": "2.0.0",
+    "gulp-if": "2.0.2",
+    "gulp-nodemon": "2.2.1",
+    "lodash": "4.17.4",
     "mocha": "3.2.0",
-    "node-notifier": "4.6.1"
+    "node-notifier": "5.1.2"
   },
   "devDependencies": {
-    "pre-commit": "1.1.3",
-    "semantic-release": "4.3.5",
+    "pre-commit": "1.2.2",
+    "semantic-release": "6.3.2",
     "validate-commit-message": "3.0.1"
   },
   "homepage": "https://github.com/emartech/boar-tasks-server"
