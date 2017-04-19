@@ -1,11 +1,12 @@
 'use strict';
 
 var extend = require('deep-extend');
+var _ = require('lodash');
 var boarTasksCommon = require('boar-tasks-common');
 var config = extend(boarTasksCommon.config, require('./config'));
 
 module.exports.getTasks = function(gulp, customConfig) {
-  var finalConfig = extend(config, customConfig);
+  var finalConfig = _.merge({}, config, customConfig);
 
   return {
     config: finalConfig,
