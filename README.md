@@ -98,6 +98,7 @@ gulp.task('server', tasks.server.start);
 ```
 
 *Docker*
+
 If you'd like to run your server in Docker and restart on file changes you have to set the `NODEMON_LEGACY_WATCH` environment variable to `true`. It forces Nodemon to use legacy change detection mode which is the only way to support Docker.
 
 
