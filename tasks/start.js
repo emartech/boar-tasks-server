@@ -8,14 +8,20 @@ module.exports = function(gulp, config) {
     var path = require('path');
     var env = _.extend({}, config.server.environmentVariables, process.env);
 
-    nodemon({
+    var nodemonConfig = {
       script: config.server.runnable,
       ext: 'js jade',
       watch: [config.build.distPath],
       delay: 1,
-      legacyWatch: env.NODEMON_LEGACY_WATCH === 'true',
       env: env
-    }).on('restart', function() {
+    };
+
+    if (env.NODEMON_LEGACY_WATCH === 'true') {
+      nodemonConfig.legacyWatch = true;
+      nodemonConfig.pollingInterval = 2500;
+    }
+
+    nodemon(nodemonConfig).on('restart', function() {
       notifier.notify({
         title: 'Boar tasks',
         message: 'Server restarted',
