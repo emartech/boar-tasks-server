@@ -13,6 +13,7 @@ module.exports = function(gulp, config) {
       ext: 'js jade',
       watch: [config.build.distPath],
       delay: 1,
+      legacyWatch: env.NODEMON_LEGACY_WATCH === 'true',
       env: env
     }).on('restart', function() {
       notifier.notify({
