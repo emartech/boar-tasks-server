@@ -18,7 +18,7 @@ module.exports = function(gulp, config) {
 
     if (env.NODEMON_LEGACY_WATCH === 'true') {
       nodemonConfig.legacyWatch = true;
-      nodemonConfig.pollingInterval = 2500;
+      nodemonConfig.pollingInterval = 4000;
     }
 
     nodemon(nodemonConfig).on('restart', function() {
