@@ -17,6 +17,8 @@ module.exports.getTasks = function(gulp, customConfig) {
       copy: require('./tasks/copy')(gulp, finalConfig),
       test: require('./tasks/test')(gulp, finalConfig),
       runCommand: require('./tasks/run-command')(gulp, finalConfig),
+      runTestCommand: require('./tasks/run-test-command')(gulp, finalConfig),
+      runEnvironmentCommand: require('./tasks/run-environment-command'),
       codeStyle: require('./tasks/code-style')(gulp, finalConfig),
       templateCodeStyle: require('./tasks/template-code-style')(gulp, finalConfig)
     }

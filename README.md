@@ -159,8 +159,8 @@ gulp.task('server-copy-only-changed', function () { return tasks.server.copy(tru
 
 
 
-#### Run command
-Run the specified command by spawning a child process. It sets the environment variables from the configuration also for the child process.
+#### Run command with server environment variables
+Run the specified command by spawning a child process. It sets the server environment variables from the configuration also for the child process.
 
 *Default configuration*
 
@@ -180,6 +180,41 @@ Config.server = {
 gulp.task('job-runner', function (cb) { return tasks.server.runCommand('server/processes/job-runner', cb) });
 ```
 
+
+
+### Run command with test environment variables
+Run the specified command by spawning a child process. It sets the test environment variables from the configuration also for the child process.
+
+*Default configuration*
+
+```javascript
+Config.server = {
+  test: {
+    environmentVariables: {
+      NODE_ENV: process.env.NODE_ENV || 'test',
+      APP_ROOT_PATH: process.cwd() + '/server/processes/web/'
+    }
+  },
+};
+```
+
+*Usage*
+
+```javascript
+// Creating task for a job-runner
+gulp.task('job-runner', function (cb) { return tasks.server.runTestCommand('server/processes/job-runner', cb) });
+```
+
+
+### Run command with custom environment variables
+Run the specified command by spawning a child process. It sets the given environment variables also for the child process.
+
+*Usage*
+
+```javascript
+// Creating task for a job-runner
+gulp.task('job-runner', function (cb) { return tasks.server.runEnvironmentCommand('server/processes/job-runner', { NODE_ENV: 'integration' }, cb) });
+```
 
 
 #### Code style
