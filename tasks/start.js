@@ -2,16 +2,16 @@
 
 module.exports = function(gulp, config) {
   return function() {
-    var _ = require('lodash');
-    var nodemon = require('gulp-nodemon');
-    var notifier = require('node-notifier');
-    var path = require('path');
-    var env = _.extend({}, config.server.environmentVariables, process.env);
+    const _ = require('lodash');
+    const nodemon = require('gulp-nodemon');
+    const notifier = require('node-notifier');
+    const path = require('path');
+    const env = _.extend({}, config.server.environmentVariables, process.env);
 
-    var nodemonConfig = {
+    const nodemonConfig = {
       script: config.server.runnable,
-      ext: 'js jade',
-      watch: [config.build.distPath],
+      ext: 'js pug',
+      watch: [config.server.path],
       delay: 1,
       env: env
     };

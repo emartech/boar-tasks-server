@@ -1,6 +1,6 @@
 'use strict';
 
-var runEnvironmentCommand = require('./run-environment-command');
+const runEnvironmentCommand = require('./run-environment-command');
 
 module.exports = function(gulp, config) {
   return function(command, cb) {
