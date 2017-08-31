@@ -37,53 +37,38 @@ let runSequence = require('run-sequence');
 let config = require('./tasks.config');
 let tasks = require('boar-tasks-server').getTasks(gulp, config);
 
-gulp.task('build', ['build-clean'], function(cb) {
-  runSequence(['server-copy'], cb);
-});
-
-gulp.task('start', ['build'], function(cb) {
+gulp.task('start', function(cb) {
   runSequence(['server', 'server-watch'], cb);
 });
 
 gulp.task('test', tasks.server.test);
 
-gulp.task('build-clean', function(cb) { tasks.build.clean(cb); });
 gulp.task('server', tasks.server.start);
-gulp.task('server-copy', function() { return tasks.server.copy(false); });
-gulp.task('server-copy-only-changed', function () { return tasks.server.copy(true); });
 gulp.task('server-jshint', function() { return tasks.server.jshint(); });
-gulp.task('server-watch', function() { gulp.watch(tasks.config.server.filePattern, ['server-copy-only-changed']) });
+gulp.task('server-watch', function() { gulp.watch(tasks.config.server.filePattern) });
 ```
 
 ## Available tasks
 
-### Build tasks
-
-#### Clean
-It is used to remove files from the build target directory.
-
-
-
 ### Server tasks
 
 #### Start
-Run a server with Nodemon for development purposes. It automatically restarts the server if any file in the `dist` folder is changed and notifies the developer about it.
+Run a server with Nodemon for development purposes. It automatically restarts the server if any file changed and notifies the developer about it.
 
 *Default configuration*
 
 ```javascript
-Config.build = {
-  distPath: 'dist/'
-};
+const path = require('path');
+const appRootPath = path.join(process.cwd(), 'server', 'processes', 'web');
 
 Config.server = {
   path: 'server/',
-  runnable: Config.build.distPath + 'server.js',
-  filePattern: ['server/**/!(*.spec).{jade,js}', 'package.json'],
+  runnable: path.join(appRootPath, 'index.js'),
+  filePattern: ['server/**/!(*.spec).{pug,js}', 'package.json'],
   watchPattern: 'server/**/*.js',
   environmentVariables: {
     NODE_ENV: process.env.NODE_ENV || 'development',
-    APP_ROOT_PATH: process.cwd() + '/' + Config.build.distPath,
+    APP_ROOT_PATH: appRootPath,
     IP: process.env.IP || undefined,
     PORT: process.env.PORT || 9100,
     BASE_URL: process.env.BASE_URL || 'http://localhost:9100'
@@ -102,32 +87,6 @@ gulp.task('server', tasks.server.start);
 If you'd like to run your server in Docker and restart on file changes you have to set the `NODEMON_LEGACY_WATCH` environment variable to `true`. It forces Nodemon to use legacy change detection mode which is the only way to support Docker.
 
 
-#### Copy
-Copy files from the server source to the `dist` folder.
-
-*Default configuration*
-
-```javascript
-Config.build = {
-  distPath: 'dist/'
-};
-
-Config.server = {
-  filePattern: ['server/**/!(*.spec).{jade,js}', 'package.json'],
-  copySrcOptions: {}
-};
-```
-
-*Usage*
-
-```javascript
-gulp.task('server-copy', function() { return tasks.server.copy(false); });
-
-// If you want to copy only the changed files
-gulp.task('server-copy-only-changed', function () { return tasks.server.copy(true); });
-```
-
-
 
 #### Test
 Run all the tests found (all `*.spec.js` files) in the codebase.
@@ -142,7 +101,7 @@ Config.server = {
     flags: ['reporter dot', 'colors'],
     environmentVariables: {
       NODE_ENV: process.env.NODE_ENV || 'test',
-      APP_ROOT_PATH: process.cwd() + '/' + Config.build.distPath
+      APP_ROOT_PATH: process.cwd() + '/server/'
     }
   }
 };
@@ -151,10 +110,7 @@ Config.server = {
 *Usage*
 
 ```javascript
-gulp.task('server-copy', function() { return tasks.server.copy(false); });
-
-// If you want to copy only the changed files
-gulp.task('server-copy-only-changed', function () { return tasks.server.copy(true); });
+gulp.task('test', tasks.server.test);
 ```
 
 
@@ -244,7 +200,7 @@ Check code style on the selected template files using pug-lint.
 ```javascript
 Config.server = {
   app: {
-    templateCodeStylePattern: 'server/app/**/*.jade'
+    templateCodeStylePattern: 'server/app/**/*.pug'
   }
 }
 ```
