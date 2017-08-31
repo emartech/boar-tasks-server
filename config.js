@@ -8,7 +8,6 @@ module.exports = {
   server: {
     path: 'server/',
     runnable: path.join(appRootPath, 'index.js'),
-    watchPattern: 'server/**/*.js',
     environmentVariables: {
       NODE_ENV: 'development',
       APP_ROOT_PATH: appRootPath,
