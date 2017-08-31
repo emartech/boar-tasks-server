@@ -14,7 +14,7 @@ module.exports = function(gulp, config) {
     const _ = require('lodash');
 
     const mochaPath = require('path').dirname(require.resolve('mocha')) + '/bin/mocha';
-    const command = [mochaPath].concat(flags).concat(requires).concat([config.server.path + '**/*.spec.js']);
+    const command = [mochaPath].concat(flags).concat(requires).concat(config.server.test.filePatterns);
     const spawn = require('child_process').spawn;
     const env = _.extend({}, process.env, config.server.test.environmentVariables);
     const proc = spawn('node', command, { env: env, stdio: 'inherit' });
