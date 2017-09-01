@@ -1,5 +1,21 @@
 # Migration Guide
 
+### 11.0
+Default file pattern of tests changed. If you have specified custom server path, 
+you need to adjust the corresponding config entry respectively.
+
+```javascript
+  const config = {
+      server: {
+        path: 'custom_server_path/',
+        test: {
+          filePatterns: ['custom_server_path/**/*.spec.js']
+        }
+      }
+  }
+
+```
+
 ### 10.0
 
 Copying to `dist` folder will no longer be present. You should delete every related Gulp task.
