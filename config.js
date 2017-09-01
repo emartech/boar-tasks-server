@@ -8,7 +8,6 @@ module.exports = {
   server: {
     path: 'server/',
     runnable: path.join(appRootPath, 'index.js'),
-    watchPattern: 'server/**/*.js',
     environmentVariables: {
       NODE_ENV: 'development',
       APP_ROOT_PATH: appRootPath,
@@ -19,6 +18,7 @@ module.exports = {
     test: {
       requires: ['co-mocha'],
       flags: ['reporter dot', 'colors'],
+      filePatterns: ['server/**/*.spec.js'],
       environmentVariables: {
         NODE_ENV: process.env.NODE_ENV || 'test',
         APP_ROOT_PATH: appRootPath
