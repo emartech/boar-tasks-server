@@ -1,5 +1,10 @@
 # Migration Guide
 
+### 12.0
+Security check (nsp) task in no longer provided due to the service shutdown.
+1. Remove security check step from build steps.
+2. Use the built in `npm audit` instead which is provided from npm v6.
+
 ### 11.0
 Default file pattern of tests changed. If you have specified custom server path, 
 you need to adjust the corresponding config entry respectively.
@@ -13,7 +18,6 @@ you need to adjust the corresponding config entry respectively.
         }
       }
   }
-
 ```
 
 ### 10.0

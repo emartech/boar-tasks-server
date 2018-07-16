@@ -220,14 +220,3 @@ Install `pug-lint-config-emarsys` to your project and create a file in your proj
 ```javascript
 gulp.task('server-template-code-style', tasks.server.templateCodeStyle);
 ```
-
-
-
-#### Security checks
-Check package.json's dependencies section against known vulnerable libraries. This will only generate warnings on the console.
-
-*Usage*
-
-```javascript
-gulp.task('nsp', function(cb) { tasks.server.nsp(__dirname + '/package.json', cb) });
-```

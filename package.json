@@ -3,13 +3,7 @@
   "description": "Boar Tasks for server side",
   "main": "index.js",
   "scripts": {
-    "validate-commit-msg": "validate-commit-msg",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
-  },
-  "release": {
-    "verifyConditions": {
-      "path": "./node_modules/semantic-release/src/lib/plugin-noop.js"
-    }
+    "semantic-release": "semantic-release"
   },
   "repository": {
     "type": "git",
@@ -20,24 +14,19 @@
   "bugs": {
     "url": "https://github.com/emartech/boar-tasks-server/issues"
   },
-  "pre-commit": [
-    "validate-commit-msg"
-  ],
   "dependencies": {
-    "boar-tasks-common": "6.0.0",
-    "co-mocha": "1.2.0",
-    "deep-extend": "0.4.1",
-    "gulp-changed": "2.0.0",
+    "boar-tasks-common": "7.0.0",
+    "co-mocha": "1.2.2",
+    "deep-extend": "0.6.0",
+    "gulp-changed": "3.2.0",
     "gulp-if": "2.0.2",
     "gulp-nodemon": "2.2.1",
-    "lodash": "4.17.4",
-    "mocha": "3.2.0",
-    "node-notifier": "5.1.2"
+    "lodash": "4.17.10",
+    "mocha": "5.2.0",
+    "node-notifier": "5.2.1"
   },
   "devDependencies": {
-    "pre-commit": "1.2.2",
-    "semantic-release": "6.3.2",
-    "validate-commit-message": "3.0.1"
+    "semantic-release": "15.7.2"
   },
   "homepage": "https://github.com/emartech/boar-tasks-server"
 }
