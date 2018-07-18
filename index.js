@@ -10,7 +10,6 @@ module.exports.getTasks = function(gulp, customConfig) {
 
   return {
     config: finalConfig,
-    nsp: boarTasksCommon.lint(gulp).nsp,
     server: {
       start: require('./tasks/start')(gulp, finalConfig),
       test: require('./tasks/test')(gulp, finalConfig),
