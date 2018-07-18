@@ -17,7 +17,7 @@ module.exports = {
     },
     test: {
       requires: ['co-mocha'],
-      flags: ['reporter dot', 'colors'],
+      flags: ['reporter dot', 'colors', 'exit'],
       filePatterns: ['server/**/*.spec.js'],
       environmentVariables: {
         NODE_ENV: process.env.NODE_ENV || 'test',
